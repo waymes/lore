@@ -1,0 +1,40 @@
+:root
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif
+  line-height: 1.5
+  font-weight: 400
+  width: 100%
+
+  font-synthesis: none
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+body
+  margin: 0
+  width: 100vw
+  box-sizing: border-box
+
+.container
+  width: 100%
+  max-width: 1140px
+  padding: 0 20px
+  margin: auto
+
+.home
+  &__banner
+    width: 100%
+    height: calc(100vh - 86px)
+    background: url(banner.jpg)
+    background-position: center
+    background-size: cover
+    overflow: hidden
+
+  &__message
+    position: relative
+    background: rgba(255,255,255,0.7)
+    padding: 30px
+    width: 500px
+    max-width: 100%
+    margin-top: 20%
+    border-radius: 10px
+    box-shadow: 0 0 40px 0 rgb(255,255,255);
