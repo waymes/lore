@@ -1,0 +1,44 @@
+.header
+  height: 86px
+  display: flex
+  align-items: center
+  border-bottom: 1px solid black
+
+  &__nav
+    display: flex
+    align-items: center
+
+  &__logo
+    margin-right: auto
+    position: relative
+    font-size: 30px
+    display: block
+    width: 40px
+    height: 40px
+    border-radius: 50%
+    text-align: center
+    line-height: 38px
+    background: white
+    user-select: none
+    cursor: url(heart.png),auto
+    &::before
+      position: absolute
+      content: ''
+      top: -3px
+      left: -3px
+      width: 46px
+      height: 46px
+      background: linear-gradient(0deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+      z-index: -1
+      border-radius: 50%
+
+  &__link
+    background: white
+    color: black
+    cursor: pointer
+
+    margin-left: 20px
+    border-bottom: 3px solid transparent
+    transition: 200ms border-bottom-color
+    &:hover
+      border-bottom-color: #57C785
