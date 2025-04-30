@@ -27,7 +27,7 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
       list.map((item) => {
         if (item.url === url) {
           const newItem = { ...item };
-          if (!item.audio) {
+          if (!newItem.audio) {
             const audio = new Audio(`/audio/${item.url}`);
             audio.loop = true;
             audio.volume = volume;
@@ -45,7 +45,12 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
             newItem.audio = audio;
             newItem.loading = true;
           } else {
-            newItem.audio!.volume = volume;
+            newItem.audio.volume = volume;
+            if (volume === 0) {
+              newItem.audio.pause();
+            } else if (volume !== 0 && newItem.audio.paused) {
+              newItem.audio.play();
+            }
           }
           return newItem;
         }
@@ -67,7 +72,11 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
   };
   const handleClose = () => {
     setPlay(false);
-    list.forEach((el) => el.audio?.pause());
+    list.forEach((el) => {
+      if (el.audio) {
+        el.audio.pause();
+      }
+    });
     onClose();
   };
 

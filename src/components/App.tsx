@@ -1,12 +1,17 @@
 import React from 'react';
 import Header from './header';
 import MeditateModal from './meditate-modal';
+import RelaxModal from './relax-modal';
 
 function App() {
   const [showMeditateModal, setShowMeditateModal] = React.useState(false);
+  const [showRelaxModal, setShowRelaxModal] = React.useState(false);
   return (
     <div className="home">
-      <Header onMeditateClick={() => setShowMeditateModal(true)} />
+      <Header
+        onMeditateClick={() => setShowMeditateModal(true)}
+        onRelaxClick={() => setShowRelaxModal(true)}
+      />
       <div className="home__banner">
         <div className="container">
           <h1 className="home__message">
@@ -17,6 +22,10 @@ function App() {
       <MeditateModal
         onClose={() => setShowMeditateModal(false)}
         open={showMeditateModal}
+      />
+      <RelaxModal
+        open={showRelaxModal}
+        onClose={() => setShowRelaxModal(false)}
       />
     </div>
   );
