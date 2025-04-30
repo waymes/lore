@@ -84,7 +84,7 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
       onClose={handleClose}
       open={open}
       title="Meditation"
-      background="/water.jpg"
+      background="/images/water.jpg"
     >
       <div className="meditateModal container">
         <h3 className="meditateModal__title">
