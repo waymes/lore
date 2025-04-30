@@ -4,6 +4,7 @@ import Modal from '../modal';
 import AudioTrack from '../audio-track';
 import './meditate-modal.sass';
 import AudioPlayer from '../audio-player';
+import bannerImage from '../../assets/images/water.jpg';
 
 interface MeditateModalProps {
   onClose: () => void;
@@ -84,7 +85,7 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
       onClose={handleClose}
       open={open}
       title="Meditation"
-      background="/images/water.jpg"
+      background={bannerImage}
     >
       <div className="meditateModal container">
         <h3 className="meditateModal__title">
