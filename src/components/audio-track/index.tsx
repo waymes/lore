@@ -22,7 +22,7 @@ function AudioTrack({
     <div className="audio">
       <div
         className="audio__icon"
-        style={{ backgroundImage: `url(/icons/${icon})` }}
+        style={{ backgroundImage: `url(${icon})` }}
       />
       <div className="audio__title">{title}</div>
       <Slider

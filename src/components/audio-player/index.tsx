@@ -1,4 +1,6 @@
 import './audio-player.sass';
+import playIcon from '../../assets/icons/play.png';
+import pauseIcon from '../../assets/icons/pause.png';
 
 interface AudioPlayerProps {
   play: boolean;
@@ -11,7 +13,7 @@ function AudioPlayer({ play, onChange }: AudioPlayerProps) {
       <div
         className="player__icon"
         style={{
-          backgroundImage: `url(/icons/${play ? 'pause.png' : 'play.png'})`,
+          backgroundImage: `url(${play ? pauseIcon : playIcon})`,
         }}
       />
     </button>

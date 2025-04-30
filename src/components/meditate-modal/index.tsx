@@ -28,7 +28,7 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
         if (item.url === url) {
           const newItem = { ...item };
           if (!newItem.audio) {
-            const audio = new Audio(`/audio/${item.url}`);
+            const audio = new Audio(item.url);
             audio.loop = true;
             audio.volume = volume;
             audio.oncanplaythrough = () => {

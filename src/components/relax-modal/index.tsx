@@ -3,6 +3,7 @@ import Modal from '../modal';
 import './relax-modal.sass';
 import { renderStars } from '../../utils/stars';
 import { relaxPhrases } from '../../constants';
+import relaxAudio from '../../assets/audio/relax.mp3';
 
 interface RelaxModalProps {
   onClose: () => void;
@@ -15,7 +16,7 @@ function RelaxModal({ onClose, open }: RelaxModalProps) {
     null
   ); // not sure why I chose date.. maybe can be changed to bool
   const [activePhrase, setActivePhrase] = React.useState(0);
-  const audio = React.useMemo(() => new Audio('/audio/relax.mp3'), []);
+  const audio = React.useMemo(() => new Audio(relaxAudio), []);
 
   React.useEffect(() => {
     let stars: number[] = [];

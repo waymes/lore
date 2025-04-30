@@ -1,53 +1,75 @@
+import birdSound from './assets/audio/main-birds.mp4';
+import cricketSound from './assets/audio/main-crickets.mp4';
+import fireSound from './assets/audio/main-fire.mp4';
+import peopleSound from './assets/audio/main-people.mp4';
+import rainSound from './assets/audio/main-rain.mp4';
+import sbowlSound from './assets/audio/main-sbowl.mp4';
+import thunderSound from './assets/audio/main-thunder.mp4';
+import wavesSound from './assets/audio/main-waves.mp4';
+import whitenoiseSound from './assets/audio/main-whitenoise.mp4';
+import windSound from './assets/audio/main-wind.mp4';
+
+import birdIcon from './assets/icons/bird.png';
+import cricketIcon from './assets/icons/cricket.png';
+import fireIcon from './assets/icons/fire.png';
+import coffeeIcon from './assets/icons/coffee.png';
+import rainIcon from './assets/icons/rain.png';
+import bowlIcon from './assets/icons/bowl.png';
+import thunderIcon from './assets/icons/thunderstorm.png';
+import waveIcon from './assets/icons/wave.png';
+import tvIcon from './assets/icons/tv.png';
+import windIcon from './assets/icons/wind.png';
+
 export const audioTracks = [
   {
     title: 'Rain',
-    icon: 'rain.png',
-    url: 'main-rain.mp4',
+    icon: rainIcon,
+    url: rainSound,
   },
   {
     title: 'Thunder',
-    icon: 'thunderstorm.png',
-    url: 'main-thunder.mp4',
+    icon: thunderIcon,
+    url: thunderSound,
   },
   {
     title: 'Waves',
-    icon: 'wave.png',
-    url: 'main-waves.mp4',
+    icon: waveIcon,
+    url: wavesSound,
   },
   {
     title: 'Wind',
-    icon: 'wind.png',
-    url: 'main-wind.mp4',
+    icon: windIcon,
+    url: windSound,
   },
   {
     title: 'Fire',
-    icon: 'fire.png',
-    url: 'main-fire.mp4',
+    icon: fireIcon,
+    url: fireSound,
   },
   {
     title: 'Birds',
-    icon: 'bird.png',
-    url: 'main-birds.mp4',
+    icon: birdIcon,
+    url: birdSound,
   },
   {
     title: 'Crickets',
-    icon: 'cricket.png',
-    url: 'main-crickets.mp4',
+    icon: cricketIcon,
+    url: cricketSound,
   },
   {
     title: 'Coffee shop',
-    icon: 'coffee.png',
-    url: 'main-people.mp4',
+    icon: coffeeIcon,
+    url: peopleSound,
   },
   {
     title: 'Bowl',
-    icon: 'bowl.png',
-    url: 'main-sbowl.mp4',
+    icon: bowlIcon,
+    url: sbowlSound,
   },
   {
     title: 'White noise',
-    icon: 'tv.png',
-    url: 'main-whitenoise.mp4',
+    icon: tvIcon,
+    url: whitenoiseSound,
   },
 ];
 
