@@ -50,3 +50,23 @@ export const audioTracks = [
     url: 'main-whitenoise.mp4',
   },
 ];
+
+export const relaxPhrases = [
+  'Put a stressful thought in the star',
+  'Relax and watch your thought',
+  'Take a deep breath in...',
+  '...and breathe out',
+  'Everything is okay',
+  'Your life is okay',
+  'Life is much grander than this thought',
+  'The universe is over 93 billion light-years in distance',
+  'Our galaxy is small',
+  'Our sun is tiny',
+  'The earth is minuscule',
+  'Out cities are insignificant...',
+  '...and you are microscopic',
+  'This thought ... does not matter',
+  'It can easily disappear',
+  'And life will go on...',
+  'Hope you feel less stressed and more connected',
+];

@@ -32,10 +32,9 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
             audio.loop = true;
             audio.volume = volume;
             audio.oncanplaythrough = () => {
-              if (play) {
-                audio.play();
+              if (!play) {
+                handlePlayToggle();
               }
-
               setList((newState) =>
                 newState.map((el) =>
                   el.url === item.url ? { ...el, loading: false } : el
@@ -59,7 +58,6 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
     );
   };
   const handlePlayToggle = () => {
-    setPlay(!play);
     list.forEach((el) => {
       if (el.audio && el.audio.volume > 0) {
         if (play) {
@@ -69,6 +67,7 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
         }
       }
     });
+    setPlay(!play);
   };
   const handleClose = () => {
     setPlay(false);

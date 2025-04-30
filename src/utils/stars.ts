@@ -49,7 +49,6 @@ export const renderStars = (amount: number = 10, id: string) => {
     const interval = setInterval(() => {
       const top = parseFloat(starDiv.style.top);
       if (Date.now() < startAt) {
-        console.log();
         return;
       }
       if (top < y) {

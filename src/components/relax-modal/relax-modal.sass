@@ -6,17 +6,53 @@
     position: relative
     z-index: 5
     height: 100%
+    &_animation
+      position: relative
+      .relaxModal
+        &__star
+          animation: scaling 120s linear forwards
+        &__form
+          opacity: 0
+        &__starTitle
+          color: black
+  
+  &__title
+    font-size: 30px
+    letter-spacing: 2px
+    font-style: italic
+    font-family: "Trebuchet MS", sans-serif
+    position: relative
+    height: 45px
+    text-align: center
+    &__phrase
+      position: absolute
+      opacity: 0
+      left: 0
+      right: 0
+      transition: opacity 1000ms
+      &_active
+        opacity: 1
+      
+
   &__star
+    position: relative
     width: 300px
     height: 300px
     background: #ddd
     border-radius: 50%
     margin: 100px auto
     box-shadow: 0 0 50px tomato, 0 0 30px orange, inset 0 10px 10px 20px #ddd, inset 30px 0 35px 50px #ccc
+    display: flex
+    align-items: center
+    justify-content: center
+  &__starTitle
+    font-size: 25px
   &__form
     display: flex
     flex-direction: column
     align-items: center
+    opacity: 1
+    transition: opacity 500ms
     &__input, &__button
       padding: 15px 20px
       font-size: 17px
@@ -31,3 +67,16 @@
       background: orange
       cursor: pointer
       margin-top: 20px
+
+
+@keyframes scaling
+  0%
+    transform: scale(1)
+  5%
+    transform: scale(1)
+  85%
+    transform: scale(0.02)
+    top: 0
+  100%
+    top: -50%
+    transform: scale(0.02)
