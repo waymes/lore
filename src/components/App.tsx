@@ -1,9 +1,12 @@
+import React from 'react';
 import Header from './header';
+import MeditateModal from './meditate-modal';
 
 function App() {
+  const [showMeditateModal, setShowMeditateModal] = React.useState(false);
   return (
     <div className="home">
-      <Header />
+      <Header onMeditateClick={() => setShowMeditateModal(true)} />
       <div className="home__banner">
         <div className="container">
           <h1 className="home__message">
@@ -11,6 +14,10 @@ function App() {
           </h1>
         </div>
       </div>
+      <MeditateModal
+        onClose={() => setShowMeditateModal(false)}
+        open={showMeditateModal}
+      />
     </div>
   );
 }

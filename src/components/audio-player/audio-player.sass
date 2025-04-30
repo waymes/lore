@@ -1,0 +1,20 @@
+.player
+  width: 100%
+  max-width: 500px
+  height: 150px
+  background: rgba(255,255,255,0.6)
+  box-shadow: 0 0 10px 0 rgb(255,255,255)
+  display: flex
+  justify-content: center
+  align-items: center
+  margin: 30px auto
+  cursor: pointer
+  border: none
+  &:active &__icon
+    transform: scale(0.7)
+  &__icon
+    width: 100px
+    height: 100px
+    background-size: contain
+    background-position: center
+    transition: transform 200ms
