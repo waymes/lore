@@ -50,6 +50,9 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
               newItem.audio.pause();
             } else if (volume !== 0 && newItem.audio.paused) {
               newItem.audio.play();
+              if (!play) {
+                setPlay(true);
+              }
             }
           }
           return newItem;
@@ -58,26 +61,42 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
       })
     );
   };
-  const handlePlayToggle = () => {
+
+  const handlePlayToggle = (overridePlay: boolean = play) => {
     list.forEach((el) => {
       if (el.audio && el.audio.volume > 0) {
-        if (play) {
+        if (overridePlay) {
           el.audio.pause();
         } else {
           el.audio.play();
         }
       }
     });
-    setPlay(!play);
+    setPlay(!overridePlay);
   };
   const handleClose = () => {
+    pauseAllTracks();
     setPlay(false);
-    list.forEach((el) => {
-      if (el.audio) {
-        el.audio.pause();
-      }
-    });
     onClose();
+  };
+
+  const pauseAllTracks = (silence = false) => {
+    setList(
+      list.map((el) => {
+        if (el.audio && el.audio.volume > 0) {
+          el.audio.pause();
+          if (silence) {
+            el.audio.volume = 0;
+          }
+        }
+        return el;
+      })
+    );
+  };
+
+  const handleResetPlay = () => {
+    pauseAllTracks(true);
+    setPlay(false);
   };
 
   return (
@@ -91,7 +110,11 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
         <h3 className="meditateModal__title">
           Ambient sound to wash away distraction
         </h3>
-        <AudioPlayer play={play} onChange={handlePlayToggle} />
+        <AudioPlayer
+          play={play}
+          onChange={handlePlayToggle}
+          onReset={handleResetPlay}
+        />
         <div className="meditateModal__audioList">
           {list.map((audio) => (
             <AudioTrack
