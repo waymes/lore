@@ -33,9 +33,6 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
             audio.loop = true;
             audio.volume = volume;
             audio.oncanplaythrough = () => {
-              if (!play) {
-                handlePlayToggle();
-              }
               setList((newState) =>
                 newState.map((el) =>
                   el.url === item.url ? { ...el, loading: false } : el
@@ -48,12 +45,15 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
             newItem.audio.volume = volume;
             if (volume === 0) {
               newItem.audio.pause();
-            } else if (volume !== 0 && newItem.audio.paused) {
+            } else if (newItem.audio.paused) {
               newItem.audio.play();
               if (!play) {
                 setPlay(true);
               }
             }
+          }
+          if (play) {
+            handlePlayToggle(false);
           }
           return newItem;
         }
@@ -63,15 +63,7 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
   };
 
   const handlePlayToggle = (overridePlay: boolean = play) => {
-    list.forEach((el) => {
-      if (el.audio && el.audio.volume > 0) {
-        if (overridePlay) {
-          el.audio.pause();
-        } else {
-          el.audio.play();
-        }
-      }
-    });
+    pauseAllTracks(overridePlay);
     setPlay(!overridePlay);
   };
   const handleClose = () => {
@@ -80,14 +72,14 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
     onClose();
   };
 
-  const pauseAllTracks = (silence = false) => {
+  const pauseAllTracks = (pause = true, silence = false) => {
     setList(
       list.map((el) => {
-        if (el.audio && el.audio.volume > 0) {
-          el.audio.pause();
-          if (silence) {
-            el.audio.volume = 0;
-          }
+        if (el.audio && el.audio?.volume > 0) {
+          if (pause) {
+            el.audio.pause();
+            if (silence) el.audio.volume = 0;
+          } else el.audio.play();
         }
         return el;
       })
@@ -95,7 +87,7 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
   };
 
   const handleResetPlay = () => {
-    pauseAllTracks(true);
+    pauseAllTracks(true, true);
     setPlay(false);
   };
 

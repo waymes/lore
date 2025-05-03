@@ -1,7 +1,10 @@
 import React from 'react';
-import moment from 'moment';
 import './timer.sass';
-import { getTimeLeft, renderFullTime } from '../../utils/date';
+import {
+  getTimeLeft,
+  renderFullTime,
+  validateMinutesInput,
+} from '../../utils/date';
 
 interface TimerProps {
   className?: string;
@@ -12,11 +15,13 @@ function Timer({ className = '', onStopPlayer }: TimerProps) {
   const [timer, setTimer] = React.useState<{
     interval: number | null;
     startAt: Date | null;
-    time: number;
+    minutes: number | string;
+    hours: number | string;
   }>({
-    time: 10, // minutes
-    startAt: null,
     interval: null,
+    startAt: null,
+    minutes: 10,
+    hours: 0,
   });
 
   React.useEffect(() => {
@@ -30,15 +35,16 @@ function Timer({ className = '', onStopPlayer }: TimerProps) {
 
   const handleChangeTime =
     (type: string) => (event: React.FormEvent<HTMLInputElement>) => {
-      const value = parseInt(event.currentTarget.value, 10);
-      const currentDuration = moment.duration(timer.time, 'minutes');
-      const newTime = moment.duration({
-        minutes: type === 'm' ? value : currentDuration.minutes(),
-        hours: type === 'h' ? value : currentDuration.hours(),
-      });
       setTimer({
         ...timer,
-        time: newTime.asMinutes(),
+        minutes:
+          type === 'm'
+            ? validateMinutesInput(event.currentTarget.value)
+            : timer.minutes,
+        hours:
+          type === 'h'
+            ? validateMinutesInput(event.currentTarget.value)
+            : timer.hours,
       });
     };
 
@@ -47,16 +53,24 @@ function Timer({ className = '', onStopPlayer }: TimerProps) {
       clearInterval(timer.interval);
     }
     setTimer({
-      time: 10,
+      minutes: 10,
+      hours: 0,
       startAt: null,
       interval: null,
     });
   };
 
   const handleStartTimer = () => {
+    if (!timer.minutes && !timer.hours) {
+      return;
+    }
     const startAt = new Date();
     const interval = setInterval(() => {
-      const timeLeft = getTimeLeft(startAt, timer.time);
+      const timeLeft = getTimeLeft(
+        startAt,
+        String(timer.minutes),
+        String(timer.hours)
+      );
       if (timeLeft < 0) {
         onStopPlayer();
         setTimer({
@@ -76,8 +90,11 @@ function Timer({ className = '', onStopPlayer }: TimerProps) {
     });
   };
 
-  const currentFormDuration = moment.duration(timer.time, 'minutes');
-  const timeLeft = getTimeLeft(timer.startAt!, timer.time);
+  const timeLeft = getTimeLeft(
+    timer.startAt!,
+    String(timer.minutes),
+    String(timer.hours)
+  );
 
   return (
     <div className={`timer ${className}`}>
@@ -92,15 +109,13 @@ function Timer({ className = '', onStopPlayer }: TimerProps) {
           <span className="timer__form__text">Hours: </span>
           <input
             className="timer__form__input"
-            type="number"
-            value={currentFormDuration.hours()}
+            value={timer.hours}
             onChange={handleChangeTime('h')}
           />
           <span className="timer__form__text">minutes: </span>
           <input
             className="timer__form__input"
-            type="number"
-            value={currentFormDuration.minutes()}
+            value={timer.minutes}
             onChange={handleChangeTime('m')}
           />
         </div>
