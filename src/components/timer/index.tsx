@@ -58,7 +58,6 @@ function Timer({ className = '', onStopPlayer }: TimerProps) {
     const interval = setInterval(() => {
       const timeLeft = getTimeLeft(startAt, timer.time);
       if (timeLeft < 0) {
-        console.log('stopping timer');
         onStopPlayer();
         setTimer({
           ...timer,
