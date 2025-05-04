@@ -7,10 +7,29 @@ import RelaxModal from './relax-modal';
 import Home from './home';
 import { languages } from '../constants';
 
+type Locale = 'en' | 'es' | 'ua';
+
 function App() {
   const [showMeditateModal, setShowMeditateModal] = React.useState(false);
   const [showRelaxModal, setShowRelaxModal] = React.useState(false);
-  const [locale, setLocale] = React.useState<'en' | 'es' | 'ua'>('en');
+  const [locale, setLocale] = React.useState<Locale>('en');
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const storedLocale = localStorage.getItem('lang') as Locale;
+    if (storedLocale && !!languages[storedLocale]) {
+      setLocale(storedLocale);
+    }
+    setLoading(false);
+  }, []);
+
+  const handleSetLocal = (locale: Locale) => {
+    setLocale(locale);
+    localStorage.setItem('lang', locale);
+  };
+  if (loading) {
+    return null;
+  }
   return (
     <IntlProvider
       messages={languages[locale].messages}
@@ -21,7 +40,7 @@ function App() {
         <Header
           onMeditateClick={() => setShowMeditateModal(true)}
           onRelaxClick={() => setShowRelaxModal(true)}
-          onLocaleChange={setLocale}
+          onLocaleChange={handleSetLocal}
           locale={locale}
         />
         <Home />
