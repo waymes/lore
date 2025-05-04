@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 import './modal.sass';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 interface ModalProps {
   onClose: () => void;
@@ -20,7 +22,7 @@ function Modal({ children, onClose, open, background, title }: ModalProps) {
           <div className="modal__header container">
             <h2 className="modal__header__title">{title}</h2>
             <button className="modal__header__close" onClick={onClose}>
-              Close
+              <FormattedMessage {...messages.close} />
             </button>
           </div>
         </div>

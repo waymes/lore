@@ -1,3 +1,10 @@
+import { IntlShape } from 'react-intl';
+import commonMessages from './messages';
+
+import englishMessages from './lang/en.json';
+import spanishMessages from './lang/es.json';
+import ukrainianMessages from './lang/ua.json';
+
 import birdSound from './assets/audio/main-birds.mp4';
 import cricketSound from './assets/audio/main-crickets.mp4';
 import fireSound from './assets/audio/main-fire.mp4';
@@ -20,75 +27,91 @@ import waveIcon from './assets/icons/wave.png';
 import tvIcon from './assets/icons/tv.png';
 import windIcon from './assets/icons/wind.png';
 
-export const audioTracks = [
-  {
-    title: 'Rain',
-    icon: rainIcon,
-    url: rainSound,
-  },
-  {
-    title: 'Thunder',
-    icon: thunderIcon,
-    url: thunderSound,
-  },
-  {
-    title: 'Waves',
-    icon: waveIcon,
-    url: wavesSound,
-  },
-  {
-    title: 'Wind',
-    icon: windIcon,
-    url: windSound,
-  },
-  {
-    title: 'Fire',
-    icon: fireIcon,
-    url: fireSound,
-  },
-  {
-    title: 'Birds',
-    icon: birdIcon,
-    url: birdSound,
-  },
-  {
-    title: 'Crickets',
-    icon: cricketIcon,
-    url: cricketSound,
-  },
-  {
-    title: 'Coffee shop',
-    icon: coffeeIcon,
-    url: peopleSound,
-  },
-  {
-    title: 'Bowl',
-    icon: bowlIcon,
-    url: sbowlSound,
-  },
-  {
-    title: 'White noise',
-    icon: tvIcon,
-    url: whitenoiseSound,
-  },
-];
+import englishIcon from './assets/icons/united-kingdom.png';
+import spanishIcon from './assets/icons/colombia.png';
+import ukraineIcon from './assets/icons/ukraine.png';
 
-export const relaxPhrases = [
-  'Put a stressful thought in the star',
-  'Relax and watch your thought',
-  'Take a deep breath in...',
-  '...and breathe out',
-  'Everything is okay',
-  'Your life is okay',
-  'Life is much grander than this thought',
-  'The universe is over 93 billion light-years in distance',
-  'Our galaxy is small',
-  'Our sun is tiny',
-  'The earth is miniscule',
-  'Our cities are insignificant...',
-  '...and you are microscopic',
-  'This thought ... does not matter',
-  'It can easily disappear',
-  'And life will go on...',
-  'Hope you feel less stressed and more connected',
-];
+type FormatMessage = IntlShape['formatMessage'];
+
+export function getAudioTracks(formatMessage: FormatMessage) {
+  return [
+    {
+      title: formatMessage(commonMessages.rain),
+      icon: rainIcon,
+      url: rainSound,
+    },
+    {
+      title: formatMessage(commonMessages.thunder),
+      icon: thunderIcon,
+      url: thunderSound,
+    },
+    {
+      title: formatMessage(commonMessages.waves),
+      icon: waveIcon,
+      url: wavesSound,
+    },
+    {
+      title: formatMessage(commonMessages.wind),
+      icon: windIcon,
+      url: windSound,
+    },
+    {
+      title: formatMessage(commonMessages.fire),
+      icon: fireIcon,
+      url: fireSound,
+    },
+    {
+      title: formatMessage(commonMessages.birds),
+      icon: birdIcon,
+      url: birdSound,
+    },
+    {
+      title: formatMessage(commonMessages.crickets),
+      icon: cricketIcon,
+      url: cricketSound,
+    },
+    {
+      title: formatMessage(commonMessages.coffee),
+      icon: coffeeIcon,
+      url: peopleSound,
+    },
+    {
+      title: formatMessage(commonMessages.bowl),
+      icon: bowlIcon,
+      url: sbowlSound,
+    },
+    {
+      title: formatMessage(commonMessages.whiteNoise),
+      icon: tvIcon,
+      url: whitenoiseSound,
+    },
+  ];
+}
+
+export function getRelaxPhrases(formatMessage: FormatMessage) {
+  return [
+    formatMessage(commonMessages.phrase1),
+    formatMessage(commonMessages.phrase2),
+    formatMessage(commonMessages.phrase3),
+    formatMessage(commonMessages.phrase4),
+    formatMessage(commonMessages.phrase5),
+    formatMessage(commonMessages.phrase6),
+    formatMessage(commonMessages.phrase7),
+    formatMessage(commonMessages.phrase8),
+    formatMessage(commonMessages.phrase9),
+    formatMessage(commonMessages.phrase10),
+    formatMessage(commonMessages.phrase11),
+    formatMessage(commonMessages.phrase12),
+    formatMessage(commonMessages.phrase13),
+    formatMessage(commonMessages.phrase14),
+    formatMessage(commonMessages.phrase15),
+    formatMessage(commonMessages.phrase16),
+    formatMessage(commonMessages.phrase17),
+  ];
+}
+
+export const languages = {
+  en: { icon: englishIcon, label: 'English', messages: englishMessages },
+  es: { icon: spanishIcon, label: 'Español', messages: spanishMessages },
+  ua: { icon: ukraineIcon, label: 'Українська', messages: ukrainianMessages },
+};

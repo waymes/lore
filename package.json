@@ -7,16 +7,19 @@
     "dev": "vite",
     "build": "tsc -b && vite build --base=/lore/ --outDir=lore",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "extract": "formatjs extract 'src/**/messages.ts' --out-file src/lang/en.json --format formatter.js"
   },
   "dependencies": {
     "moment": "^2.30.1",
     "rc-slider": "^11.1.8",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-intl": "^7.1.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
+    "@formatjs/cli": "^6.6.4",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",

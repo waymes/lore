@@ -35,6 +35,8 @@
     cursor: pointer
     margin-left: 30px
     position: relative
+    text-decoration: none
+    color: black
     &::after
       content: ''
       position: absolute
@@ -46,3 +48,61 @@
       transition: height 200ms
     &:hover:after
       height: 5px
+  
+  &__lang
+    margin-left: 30px
+    display: flex
+    align-items: center
+    position: relative
+    &__btn
+      padding: 0
+      border: none
+      height: 35px
+      background: transparent
+      cursor: pointer
+      &:active .header__lang__icon
+        transform: translateY(2px)
+    &__icon
+      display: inline-block
+      width: 35px
+      height: 35px
+      background-size: contain
+      background-position: center
+      background-repeat: no-repeat
+    &__dropdown
+      position: absolute
+      top: 20px
+      right: -11px
+      background: white
+      display: flex
+      flex-direction: column
+      border-radius: 5px
+      overflow: hidden
+      box-shadow: 0 0 10px 0 rgb(255, 255, 255)
+      border: 1px solid #eee
+      opacity: 0
+      transition: top 200ms, opacity 200ms
+      pointer-events: none
+      &_active
+        top: 35px
+        opacity: 1
+        pointer-events: all
+      &Btn
+        padding: 0 10px
+        border: none
+        display: inline-block
+        cursor: pointer
+        display: flex
+        justify-content: space-between
+        align-items: center
+        background: transparent
+        transition: background 200ms
+        border-bottom: 1px solid #eee
+        &:last-child
+          border-bottom: none
+        
+        &:hover
+          background: #eee
+    &__label
+      display: inline-block
+      margin-right: 10px

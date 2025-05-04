@@ -2,8 +2,10 @@ import React, { FormEvent } from 'react';
 import Modal from '../modal';
 import './relax-modal.sass';
 import { renderStars } from '../../utils/stars';
-import { relaxPhrases } from '../../constants';
+import { getRelaxPhrases } from '../../constants';
 import relaxAudio from '../../assets/audio/relax.mp3';
+import { FormattedMessage, useIntl } from 'react-intl';
+import messages from './messages';
 
 interface RelaxModalProps {
   onClose: () => void;
@@ -11,12 +13,14 @@ interface RelaxModalProps {
 }
 
 function RelaxModal({ onClose, open }: RelaxModalProps) {
+  const intl = useIntl();
   const [problem, setProblem] = React.useState('');
   const [animationStart, setAnimationStart] = React.useState<number | null>(
     null
   ); // not sure why I chose date.. maybe can be changed to bool
   const [activePhrase, setActivePhrase] = React.useState(0);
   const audio = React.useMemo(() => new Audio(relaxAudio), []);
+  const relaxPhrases = getRelaxPhrases(intl.formatMessage);
 
   React.useEffect(() => {
     let stars: number[] = [];
@@ -71,7 +75,11 @@ function RelaxModal({ onClose, open }: RelaxModalProps) {
     setAnimationStart(Date.now());
   };
   return (
-    <Modal onClose={onClose} open={open} title="Relax">
+    <Modal
+      onClose={onClose}
+      open={open}
+      title={intl.formatMessage(messages.relax)}
+    >
       <div className="relaxModal" id="relaxBackground">
         <div
           className={`relaxModal__content ${
@@ -98,13 +106,13 @@ function RelaxModal({ onClose, open }: RelaxModalProps) {
           <form className="relaxModal__form" onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="What's bothering you?..."
+              placeholder={intl.formatMessage(messages.input)}
               className="relaxModal__form__input"
               value={problem}
               onChange={handleAddProblem}
             />
             <button type="submit" className="relaxModal__form__button">
-              DONE
+              <FormattedMessage {...messages.done} />
             </button>
           </form>
         </div>

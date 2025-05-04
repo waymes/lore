@@ -5,6 +5,8 @@ import {
   renderFullTime,
   validateMinutesInput,
 } from '../../utils/date';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 interface TimerProps {
   className?: string;
@@ -98,7 +100,9 @@ function Timer({ className = '', onStopPlayer }: TimerProps) {
 
   return (
     <div className={`timer ${className}`}>
-      <h3 className="timer__title">Will stop playing after:</h3>
+      <h3 className="timer__title">
+        <FormattedMessage {...messages.title} />
+      </h3>
       {timer.interval && (
         <div className="timer__countdown">
           <h4 className="timer__countdown__text">{renderFullTime(timeLeft)}</h4>
@@ -106,13 +110,17 @@ function Timer({ className = '', onStopPlayer }: TimerProps) {
       )}
       {!timer.interval && (
         <div className="timer__form">
-          <span className="timer__form__text">Hours: </span>
+          <span className="timer__form__text">
+            <FormattedMessage {...messages.hours} />
+          </span>
           <input
             className="timer__form__input"
             value={timer.hours}
             onChange={handleChangeTime('h')}
           />
-          <span className="timer__form__text">minutes: </span>
+          <span className="timer__form__text">
+            <FormattedMessage {...messages.minutes} />
+          </span>
           <input
             className="timer__form__input"
             value={timer.minutes}
@@ -122,10 +130,10 @@ function Timer({ className = '', onStopPlayer }: TimerProps) {
       )}
       <div className="timer__buttons">
         <button className="timer__button" onClick={handleTimerReset}>
-          Reset
+          <FormattedMessage {...messages.reset} />
         </button>
         <button className="timer__button" onClick={handleStartTimer}>
-          Start
+          <FormattedMessage {...messages.start} />
         </button>
       </div>
     </div>

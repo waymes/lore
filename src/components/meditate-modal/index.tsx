@@ -1,10 +1,12 @@
 import React from 'react';
-import { audioTracks } from '../../constants';
+import { getAudioTracks } from '../../constants';
 import Modal from '../modal';
 import AudioTrack from '../audio-track';
 import './meditate-modal.sass';
 import AudioPlayer from '../audio-player';
 import bannerImage from '../../assets/images/water.jpg';
+import { FormattedMessage, useIntl } from 'react-intl';
+import messages from './messages';
 
 interface MeditateModalProps {
   onClose: () => void;
@@ -20,7 +22,9 @@ type AudioItem = {
 };
 
 function MeditateModal({ onClose, open }: MeditateModalProps) {
+  const intl = useIntl();
   const [play, setPlay] = React.useState(false);
+  const audioTracks = getAudioTracks(intl.formatMessage);
   const [list, setList] = React.useState<Array<AudioItem>>(audioTracks);
 
   const handleVolumeChange = (url: string, volume: number) => {
@@ -95,12 +99,12 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
     <Modal
       onClose={handleClose}
       open={open}
-      title="Meditation"
+      title={intl.formatMessage(messages.meditation)}
       background={bannerImage}
     >
       <div className="meditateModal container">
         <h3 className="meditateModal__title">
-          Ambient sound to wash away distraction
+          <FormattedMessage {...messages.title} />
         </h3>
         <AudioPlayer
           play={play}
@@ -112,6 +116,7 @@ function MeditateModal({ onClose, open }: MeditateModalProps) {
             <AudioTrack
               key={audio.icon}
               {...audio}
+              title={audioTracks.find((el) => el.url === audio.url)!.title}
               onChange={handleVolumeChange}
             />
           ))}
