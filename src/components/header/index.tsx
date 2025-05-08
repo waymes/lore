@@ -59,6 +59,7 @@ function Header({
             className="header__lang__btn"
             onClick={() => setShowLangPopup(!showLangPopup)}
           >
+            asdl;kjfasl;fkjas;ljfk;alskjfa;slkjdfal;
             <span
               className="header__lang__icon"
               style={{ backgroundImage: `url(${langIcon})` }}
