@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import './header.sass';
 import { languages } from '../../constants';
 import messages from './messages';
+import BirthdayHat from '../../assets/icons/party-hat.png';
 
 type Locale = 'en' | 'es' | 'ua';
 
@@ -47,7 +48,9 @@ function Header({
   return (
     <header className="header">
       <nav className="header__nav container">
-        <a className="header__logo">L</a>
+        <a className="header__logo">
+          L <img src={BirthdayHat} />
+        </a>
         <a className="header__link" href="#" onClick={onRelaxClick}>
           <FormattedMessage {...messages.relax} />
         </a>
